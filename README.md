@@ -20,6 +20,7 @@ This repo **does NOT contain** the Jarvis implementation code. Instead, it:
 
 | Document | Description |
 |----------|-------------|
+| [USAGE_GUIDE.md](USAGE_GUIDE.md) | **START HERE** - Complete guide to using this repository |
 | [DESIGN_PLAN.md](DESIGN_PLAN.md) | Overall architecture and system design |
 | [USE_CASES.md](USE_CASES.md) | Detailed use cases showing component interactions |
 | [JARVIS_FILE_TREE.md](JARVIS_FILE_TREE.md) | Complete file tree with all modules, files, and functions by priority |
@@ -29,12 +30,13 @@ This repo **does NOT contain** the Jarvis implementation code. Instead, it:
 
 ### Quick Start
 
-1. **New to the project?** Start with [DESIGN_PLAN.md](DESIGN_PLAN.md) to understand the architecture
-2. **Want to see how it works?** Read [USE_CASES.md](USE_CASES.md) for detailed interaction examples
-3. **Need the complete structure?** Check [JARVIS_FILE_TREE.md](JARVIS_FILE_TREE.md) for all files and functions
-4. **Ready to code?** Review [REQUIREMENTS.md](REQUIREMENTS.md) for standards and best practices
-5. **Planning work?** Check [ROADMAP.md](ROADMAP.md) for implementation phases
-6. **Need current status?** See [DEV_STATE.md](DEV_STATE.md) for progress tracking
+1. **New to the project?** Read [USAGE_GUIDE.md](USAGE_GUIDE.md) for a complete walkthrough
+2. **Understand the architecture?** Start with [DESIGN_PLAN.md](DESIGN_PLAN.md)
+3. **Want to see how it works?** Read [USE_CASES.md](USE_CASES.md) for detailed interaction examples
+4. **Need the complete structure?** Check [JARVIS_FILE_TREE.md](JARVIS_FILE_TREE.md) for all files and functions
+5. **Ready to code?** Review [REQUIREMENTS.md](REQUIREMENTS.md) for standards and best practices
+6. **Planning work?** Check [ROADMAP.md](ROADMAP.md) for implementation phases
+7. **Need current status?** See [DEV_STATE.md](DEV_STATE.md) for progress tracking
 
 ## What is Jarvis?
 
@@ -51,6 +53,7 @@ Jarvis is an intelligent cluster management system designed to orchestrate and o
 ```
 JarvisCluster_Development/
 ├── README.md              # This file - project overview and navigation
+├── USAGE_GUIDE.md        # Complete guide to using this repository
 ├── DESIGN_PLAN.md        # System architecture and design principles
 ├── USE_CASES.md          # Detailed use cases and interaction flows
 ├── JARVIS_FILE_TREE.md   # Complete desired file tree with priorities

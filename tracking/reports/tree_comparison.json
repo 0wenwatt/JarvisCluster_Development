@@ -1,0 +1,555 @@
+{
+  "timestamp": "2026-01-04T21:40:12.802722",
+  "summary": {
+    "desired_total_files": 127,
+    "desired_total_directories": 264,
+    "actual_total_files": 5,
+    "actual_total_directories": 5,
+    "completion_percentage": 20.47244094488189
+  },
+  "by_priority": {
+    "P0": {
+      "total": 54,
+      "implemented": 14,
+      "percentage": 25.925925925925924,
+      "missing": 40
+    },
+    "P1": {
+      "total": 41,
+      "implemented": 8,
+      "percentage": 19.51219512195122,
+      "missing": 33
+    },
+    "P2": {
+      "total": 28,
+      "implemented": 3,
+      "percentage": 10.714285714285714,
+      "missing": 25
+    },
+    "P3": {
+      "total": 4,
+      "implemented": 1,
+      "percentage": 25.0,
+      "missing": 3
+    }
+  },
+  "missing_files": [
+    {
+      "path": "jarvis/.gitignore",
+      "name": ".gitignore",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/README.md",
+      "name": "README.md",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/config/default.yaml",
+      "name": "default.yaml",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/config/development.yaml",
+      "name": "development.yaml",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/docs/development.md",
+      "name": "development.md",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/__main__.py",
+      "name": "__main__.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/api/models/error.py",
+      "name": "error.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/api/models/task.py",
+      "name": "task.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/api/routes/health.py",
+      "name": "health.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/api/routes/tasks.py",
+      "name": "tasks.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/api/validators.py",
+      "name": "validators.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/communication/http_client.py",
+      "name": "http_client.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/config.py",
+      "name": "config.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/constants.py",
+      "name": "constants.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/exceptions.py",
+      "name": "exceptions.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/resource_matcher.py",
+      "name": "resource_matcher.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/task_queue.py",
+      "name": "task_queue.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/state/backend/memory.py",
+      "name": "memory.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/state/state_manager.py",
+      "name": "state_manager.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/utils/logging.py",
+      "name": "logging.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/utils/serialization.py",
+      "name": "serialization.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/utils/time_utils.py",
+      "name": "time_utils.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/utils/validation.py",
+      "name": "validation.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/version.py",
+      "name": "version.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/worker/node_agent.py",
+      "name": "node_agent.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/jarvis/worker/task_executor.py",
+      "name": "task_executor.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/requirements-dev.txt",
+      "name": "requirements-dev.txt",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/requirements.txt",
+      "name": "requirements.txt",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/scripts/run-tests.sh",
+      "name": "run-tests.sh",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/scripts/setup-dev.sh",
+      "name": "setup-dev.sh",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/setup.py",
+      "name": "setup.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/conftest.py",
+      "name": "conftest.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/fixtures/mock_nodes.py",
+      "name": "mock_nodes.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/fixtures/sample_tasks.py",
+      "name": "sample_tasks.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/fixtures/test_data.json",
+      "name": "test_data.json",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/unit/test_resource_matcher.py",
+      "name": "test_resource_matcher.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/unit/test_scheduler.py",
+      "name": "test_scheduler.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/unit/test_state_manager.py",
+      "name": "test_state_manager.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/unit/test_task_queue.py",
+      "name": "test_task_queue.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/tests/unit/test_worker.py",
+      "name": "test_worker.py",
+      "priority": "P0"
+    },
+    {
+      "path": "jarvis/.github/PULL_REQUEST_TEMPLATE.md",
+      "name": "PULL_REQUEST_TEMPLATE.md",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/.github/workflows/ci.yml",
+      "name": "ci.yml",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/.github/workflows/tests.yml",
+      "name": "tests.yml",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/config/production.yaml",
+      "name": "production.yaml",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/config/schema.yaml",
+      "name": "schema.yaml",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/docs/api-reference.md",
+      "name": "api-reference.md",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/docs/architecture.md",
+      "name": "architecture.md",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/api/middleware.py",
+      "name": "middleware.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/api/models/node.py",
+      "name": "node.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/api/routes/nodes.py",
+      "name": "nodes.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/cli/commands/node.py",
+      "name": "node.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/cli/commands/task.py",
+      "name": "task.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/cli/main.py",
+      "name": "main.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/communication/grpc/client.py",
+      "name": "client.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/communication/grpc/protos/scheduler.proto",
+      "name": "scheduler.proto",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/communication/grpc/protos/worker.proto",
+      "name": "worker.proto",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/error/error_classifier.py",
+      "name": "error_classifier.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/error/handlers.py",
+      "name": "handlers.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/monitor/heartbeat_monitor.py",
+      "name": "heartbeat_monitor.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/load_balancer.py",
+      "name": "load_balancer.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/node_scorer.py",
+      "name": "node_scorer.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/retry_manager.py",
+      "name": "retry_manager.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/retry_policy.py",
+      "name": "retry_policy.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/task_recovery.py",
+      "name": "task_recovery.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/state/backend/base.py",
+      "name": "base.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/state/backend/etcd.py",
+      "name": "etcd.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/state/node_registry.py",
+      "name": "node_registry.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/worker/log_collector.py",
+      "name": "log_collector.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/jarvis/worker/resource_monitor.py",
+      "name": "resource_monitor.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/scripts/build.sh",
+      "name": "build.sh",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/tests/integration/test_api_scheduler.py",
+      "name": "test_api_scheduler.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/tests/integration/test_multi_node.py",
+      "name": "test_multi_node.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/tests/integration/test_scheduler_worker.py",
+      "name": "test_scheduler_worker.py",
+      "priority": "P1"
+    },
+    {
+      "path": "jarvis/.github/workflows/security.yml",
+      "name": "security.yml",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/docs/deployment.md",
+      "name": "deployment.md",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/docs/troubleshooting.md",
+      "name": "troubleshooting.md",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/api/models/dag.py",
+      "name": "dag.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/api/routes/dags.py",
+      "name": "dags.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/api/routes/metrics.py",
+      "name": "metrics.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/auth/authenticator.py",
+      "name": "authenticator.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/auth/authorizer.py",
+      "name": "authorizer.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/cli/commands/cluster.py",
+      "name": "cluster.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/communication/grpc/protos/monitor.proto",
+      "name": "monitor.proto",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/dag/dag_manager.py",
+      "name": "dag_manager.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/dag/dag_validator.py",
+      "name": "dag_validator.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/dag/dependency_resolver.py",
+      "name": "dependency_resolver.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/monitor/alerting.py",
+      "name": "alerting.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/monitor/metrics_collector.py",
+      "name": "metrics_collector.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/monitor/prometheus_exporter.py",
+      "name": "prometheus_exporter.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/priority_queue.py",
+      "name": "priority_queue.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/scheduler/scheduler_policy.py",
+      "name": "scheduler_policy.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/state/backend/consul.py",
+      "name": "consul.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/state/backend/postgres.py",
+      "name": "postgres.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/state/migrations.py",
+      "name": "migrations.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/scripts/deploy.sh",
+      "name": "deploy.sh",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/tests/e2e/test_failure_recovery.py",
+      "name": "test_failure_recovery.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/tests/e2e/test_multi_node_workflow.py",
+      "name": "test_multi_node_workflow.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/tests/e2e/test_simple_task.py",
+      "name": "test_simple_task.py",
+      "priority": "P2"
+    },
+    {
+      "path": "jarvis/jarvis/autoscaler/cloud_provider.py",
+      "name": "cloud_provider.py",
+      "priority": "P3"
+    },
+    {
+      "path": "jarvis/jarvis/autoscaler/load_monitor.py",
+      "name": "load_monitor.py",
+      "priority": "P3"
+    },
+    {
+      "path": "jarvis/jarvis/autoscaler/scaling_policy.py",
+      "name": "scaling_policy.py",
+      "priority": "P3"
+    }
+  ],
+  "extra_files": [],
+  "function_coverage": {
+    "total_functions": 0,
+    "implemented_functions": 0,
+    "by_file": [],
+    "overall_percentage": 0
+  },
+  "recommendations": [
+    "CRITICAL: P0 (MVP) components are only 25.9% complete. Focus on completing 40 remaining P0 files.",
+    "WARNING: P1 components started before P0 completion. Consider focusing on P0 (MVP) first.",
+    "Project is at 20.5% completion. Focus on core MVP components (P0) to reach first milestone."
+  ]
+}
