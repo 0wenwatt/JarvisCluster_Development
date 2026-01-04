@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Jarvis Repository Snapshot",
+  "description": "Point-in-time snapshot of the Jarvis implementation repository",
+  "type": "object",
+  "required": ["timestamp", "repository", "structure", "metrics"],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this snapshot was taken (ISO 8601)"
+    },
+    "repository": {
+      "type": "object",
+      "required": ["url", "branch", "last_commit"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Repository URL"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Current branch"
+        },
+        "last_commit": {
+          "type": "object",
+          "properties": {
+            "sha": { "type": "string" },
+            "message": { "type": "string" },
+            "author": { "type": "string" },
+            "date": { "type": "string", "format": "date-time" }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Git tags"
+        },
+        "total_commits": {
+          "type": "integer",
+          "description": "Total commit count"
+        }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "properties": {
+        "directories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of directories"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "type": { "type": "string" },
+              "size": { "type": "integer" },
+              "last_modified": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "file_tree": {
+          "type": "object",
+          "description": "Hierarchical file tree structure"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "total_files": { "type": "integer" },
+        "total_directories": { "type": "integer" },
+        "lines_of_code": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "code": { "type": "integer" },
+            "comments": { "type": "integer" },
+            "blank": { "type": "integer" },
+            "by_language": {
+              "type": "object",
+              "additionalProperties": { "type": "integer" }
+            }
+          }
+        },
+        "test_coverage": {
+          "type": "object",
+          "properties": {
+            "overall": { "type": "number", "minimum": 0, "maximum": 100 },
+            "unit": { "type": "number", "minimum": 0, "maximum": 100 },
+            "integration": { "type": "number", "minimum": 0, "maximum": 100 }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "package_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Package manifest files found"
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "ecosystem": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "build_status": {
+      "type": "object",
+      "properties": {
+        "last_build": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["success", "failure", "pending", "unknown"] },
+            "timestamp": { "type": "string", "format": "date-time" },
+            "duration": { "type": "integer", "description": "Build duration in seconds" }
+          }
+        },
+        "tests": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "passed": { "type": "integer" },
+            "failed": { "type": "integer" },
+            "skipped": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "issues": {
+      "type": "object",
+      "properties": {
+        "open": { "type": "integer" },
+        "closed": { "type": "integer" },
+        "by_label": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        }
+      }
+    },
+    "pull_requests": {
+      "type": "object",
+      "properties": {
+        "open": { "type": "integer" },
+        "merged": { "type": "integer" },
+        "closed": { "type": "integer" }
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Status of components defined in DESIGN_PLAN.md",
+      "properties": {
+        "scheduler": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["not_started", "in_progress", "complete"] },
+            "completion_percentage": { "type": "number", "minimum": 0, "maximum": 100 },
+            "files": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "orchestrator": { "$ref": "#/properties/components/properties/scheduler" },
+        "monitor": { "$ref": "#/properties/components/properties/scheduler" },
+        "worker": { "$ref": "#/properties/components/properties/scheduler" }
+      }
+    }
+  }
+}
