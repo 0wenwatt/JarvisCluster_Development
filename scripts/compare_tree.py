@@ -173,6 +173,14 @@ class ActualTreeScanner:
         'dist', 'build', '*.egg-info'
     }
     
+    @staticmethod
+    def build_ignore_patterns(base_patterns: set, additional: Optional[List[str]] = None) -> set:
+        """Build ignore patterns set from base and additional patterns"""
+        patterns = base_patterns.copy()
+        if additional:
+            patterns.update(additional)
+        return patterns
+    
     def __init__(self, repo_path: str, ignore_patterns: Optional[set] = None):
         self.repo_path = Path(repo_path)
         self.ignore_patterns = ignore_patterns or self.DEFAULT_IGNORE_PATTERNS
@@ -514,10 +522,11 @@ if __name__ == '__main__':
     # Ensure output directory exists
     os.makedirs(args.output, exist_ok=True)
     
-    # Build ignore patterns
-    ignore_patterns = ActualTreeScanner.DEFAULT_IGNORE_PATTERNS.copy()
-    if args.ignore:
-        ignore_patterns.update(args.ignore)
+    # Build ignore patterns using helper
+    ignore_patterns = ActualTreeScanner.build_ignore_patterns(
+        ActualTreeScanner.DEFAULT_IGNORE_PATTERNS,
+        args.ignore
+    )
     
     # Generate report with custom ignore patterns
     print("Parsing desired file tree...")

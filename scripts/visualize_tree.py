@@ -497,12 +497,14 @@ if __name__ == '__main__':
             comparison_data = json.load(f)
         
         # Extract tree structure from comparison data
-        # The comparison data contains desired tree structure
-        # For now, create a simple representation
-        # In production, you'd parse the comparison output to build the tree
+        # TODO(future): Full tree parsing from comparison JSON output
+        # For now, generate a sample structure for demonstration
+        # Issue: Implement complete tree reconstruction from comparison data
+        # Timeline: Phase 2 enhancement after core tracking is established
         
         print("Note: Full tree parsing from comparison data not yet implemented.")
         print("Generating sample visualization structure...")
+        print("See GitHub issues for planned enhancements.")
         
         # Create a sample tree structure for demonstration
         sample_tree = {
