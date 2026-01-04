@@ -1,0 +1,56 @@
+# .gitignore for JarvisCluster_Development
+
+# Tracking data can get large - consider ignoring older snapshots
+# Uncomment these if you don't want to commit all tracking data:
+# tracking/snapshots/*.json
+# tracking/metrics/*.json
+
+# Keep latest snapshots (example pattern)
+# !tracking/snapshots/latest.json
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Scripts may create temp files
+scripts/temp/
+scripts/.cache/
+
+# Log files
+*.log
+logs/
+
+# Environment files (if you add them)
+.env
+.env.local
+config/*.local.yaml
+
+# Python cache (if you add Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node modules (if you add Node.js scripts)
+node_modules/
+npm-debug.log*
+
+# Build outputs (if you add build scripts)
+dist/
+build/
