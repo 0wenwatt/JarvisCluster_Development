@@ -86,6 +86,9 @@ class DesiredTreeParser:
     
     def _parse_tree_lines(self, lines: List[str]):
         """Parse individual lines of the tree"""
+        # Configurable tree characters pattern
+        TREE_CHARS = r'[│├└\s\t]'
+        
         stack = [(0, self.root)]  # (indent_level, node)
         current_file = None
         
@@ -97,21 +100,34 @@ class DesiredTreeParser:
             indent = len(line) - len(line.lstrip('│├└ \t'))
             indent_level = indent // 4
             
-            # Extract file/directory name and priority
-            match = re.search(r'([├└│].*?)([a-zA-Z0-9_\-./]+(?:\.[a-z]+)?)\s*(\[P[0-3]\])?', line)
+            # Extract file/directory name and priority with named groups
+            match = re.search(
+                r'(?P<tree_chars>' + TREE_CHARS + r'+)'
+                r'(?P<name>[a-zA-Z0-9_\-./]+(?:\.[a-z]+)?)\s*'
+                r'(?P<priority>\[P[0-3]\])?',
+                line
+            )
             if not match:
                 # Check if this is a function line
                 if '└── Functions:' in line or 'Functions:' in line:
                     continue
-                func_match = re.search(r'([├└│].*?)([a-z_]+\(\))\s*(\[P[0-3]\])', line)
+                # Function pattern with named groups
+                func_match = re.search(
+                    r'(?P<tree_chars>[├└│\s]+)'
+                    r'(?P<func_name>[a-z_]+)\(\)\s*'
+                    r'(?P<priority>\[P[0-3]\])',
+                    line
+                )
                 if func_match and current_file:
-                    func_name = func_match.group(2).replace('()', '')
-                    priority = func_match.group(3).strip('[]')
+                    func_name = func_match.group('func_name')
+                    priority = func_match.group('priority').strip('[]')
                     current_file.add_function(func_name, priority)
                 continue
             
-            name = match.group(2).strip()
-            priority = match.group(3).strip('[]') if match.group(3) else None
+            name = match.group('name').strip()
+            priority = match.group('priority')
+            if priority:
+                priority = priority.strip('[]')
             
             # Determine if directory or file
             is_directory = name.endswith('/') or '.' not in name.split('/')[-1]
@@ -150,8 +166,16 @@ class DesiredTreeParser:
 class ActualTreeScanner:
     """Scan actual Jarvis implementation repository"""
     
-    def __init__(self, repo_path: str):
+    # Default ignore patterns - can be overridden via constructor
+    DEFAULT_IGNORE_PATTERNS = {
+        '__pycache__', 'node_modules', 'venv', '.venv', 
+        'env', '.env', '.git', '.pytest_cache', 
+        'dist', 'build', '*.egg-info'
+    }
+    
+    def __init__(self, repo_path: str, ignore_patterns: Optional[set] = None):
         self.repo_path = Path(repo_path)
+        self.ignore_patterns = ignore_patterns or self.DEFAULT_IGNORE_PATTERNS
         
     def scan(self) -> FileTreeNode:
         """Scan the actual repository"""
@@ -169,8 +193,8 @@ class ActualTreeScanner:
         """Recursively scan directory"""
         try:
             for item in sorted(path.iterdir()):
-                # Skip common ignore patterns
-                if item.name.startswith('.') or item.name in ['__pycache__', 'node_modules', 'venv']:
+                # Skip items matching ignore patterns
+                if item.name.startswith('.') or item.name in self.ignore_patterns:
                     continue
                 
                 if item.is_dir():
@@ -417,40 +441,6 @@ class TreeComparator:
         
         return recommendations
 
-
-def generate_comparison_report(desired_tree_md: str, actual_repo_path: str,
-                               output_path: str):
-    """Generate a comprehensive comparison report"""
-    print("Parsing desired file tree...")
-    parser = DesiredTreeParser(desired_tree_md)
-    desired_tree = parser.parse()
-    
-    print("Scanning actual repository...")
-    scanner = ActualTreeScanner(actual_repo_path)
-    actual_tree = scanner.scan()
-    
-    print("Comparing trees...")
-    comparator = TreeComparator(desired_tree, actual_tree)
-    report = comparator.compare()
-    
-    print("Generating report...")
-    # Save JSON report
-    json_output = os.path.join(output_path, 'tree_comparison.json')
-    with open(json_output, 'w') as f:
-        json.dump(report, f, indent=2)
-    
-    # Generate Markdown report
-    md_output = os.path.join(output_path, 'tree_comparison.md')
-    with open(md_output, 'w') as f:
-        f.write(_generate_markdown_report(report))
-    
-    print(f"Reports generated:")
-    print(f"  - JSON: {json_output}")
-    print(f"  - Markdown: {md_output}")
-    
-    return report
-
-
 def _generate_markdown_report(report: Dict) -> str:
     """Generate markdown version of report"""
     md = "# Jarvis File Tree Comparison Report\n\n"
@@ -513,14 +503,49 @@ if __name__ == '__main__':
         default='tracking/reports',
         help='Output directory for reports'
     )
+    parser.add_argument(
+        '--ignore',
+        nargs='*',
+        help='Additional patterns to ignore when scanning (e.g., "*.pyc" "temp/")'
+    )
     
     args = parser.parse_args()
     
     # Ensure output directory exists
     os.makedirs(args.output, exist_ok=True)
     
-    # Generate report
-    report = generate_comparison_report(args.desired, args.actual, args.output)
+    # Build ignore patterns
+    ignore_patterns = ActualTreeScanner.DEFAULT_IGNORE_PATTERNS.copy()
+    if args.ignore:
+        ignore_patterns.update(args.ignore)
+    
+    # Generate report with custom ignore patterns
+    print("Parsing desired file tree...")
+    parser = DesiredTreeParser(args.desired)
+    desired_tree = parser.parse()
+    
+    print("Scanning actual repository...")
+    scanner = ActualTreeScanner(args.actual, ignore_patterns)
+    actual_tree = scanner.scan()
+    
+    print("Comparing trees...")
+    comparator = TreeComparator(desired_tree, actual_tree)
+    report = comparator.compare()
+    
+    print("Generating report...")
+    # Save JSON report
+    json_output = os.path.join(args.output, 'tree_comparison.json')
+    with open(json_output, 'w') as f:
+        json.dump(report, f, indent=2)
+    
+    # Generate Markdown report
+    md_output = os.path.join(args.output, 'tree_comparison.md')
+    with open(md_output, 'w') as f:
+        f.write(_generate_markdown_report(report))
+    
+    print(f"Reports generated:")
+    print(f"  - JSON: {json_output}")
+    print(f"  - Markdown: {md_output}")
     
     # Print summary
     print("\n" + "="*50)

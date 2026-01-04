@@ -282,7 +282,7 @@ def generate_html_tree(tree_data: Dict, output_file: str):
     </div>
     
     <script>
-        const treeData = """ + json.dumps(tree_data) + """;
+        const treeData = """ + json.dumps(tree_data, ensure_ascii=True) + """;
         
         // Calculate statistics
         function calculateStats(node, stats = { total: 0, p0: 0, p1: 0, p2: 0, p3: 0, exists: 0 }) {
@@ -479,6 +479,7 @@ def generate_html_tree(tree_data: Dict, output_file: str):
 
 if __name__ == '__main__':
     import argparse
+    import sys
     
     parser = argparse.ArgumentParser(description='Generate visual file tree')
     parser.add_argument('--input', default='tracking/reports/tree_comparison.json',
@@ -490,25 +491,59 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    # Load tree data
-    with open(args.input, 'r') as f:
-        data = json.load(f)
-    
-    # For now, create a sample tree structure
-    # In full implementation, this would come from compare_tree.py output
-    sample_tree = {
-        'name': 'jarvis',
-        'type': 'directory',
-        'priority': None,
-        'exists': False,
-        'children': []
-    }
-    
-    print("Generating ASCII tree...")
-    ascii_tree = generate_ascii_tree(sample_tree, args.output_ascii)
-    print(f"ASCII tree saved to: {args.output_ascii}")
-    
-    print("Generating HTML visualization...")
-    generate_html_tree(sample_tree, args.output_html)
-    print(f"HTML visualization saved to: {args.output_html}")
-    print(f"Open {args.output_html} in a browser to view the interactive tree.")
+    # Load tree data from comparison output
+    try:
+        with open(args.input, 'r') as f:
+            comparison_data = json.load(f)
+        
+        # Extract tree structure from comparison data
+        # The comparison data contains desired tree structure
+        # For now, create a simple representation
+        # In production, you'd parse the comparison output to build the tree
+        
+        print("Note: Full tree parsing from comparison data not yet implemented.")
+        print("Generating sample visualization structure...")
+        
+        # Create a sample tree structure for demonstration
+        sample_tree = {
+            'name': 'jarvis',
+            'type': 'directory',
+            'priority': None,
+            'exists': False,
+            'children': [
+                {
+                    'name': 'api',
+                    'type': 'directory',
+                    'priority': 'P0',
+                    'exists': True,
+                    'children': [
+                        {'name': 'server.py', 'type': 'file', 'priority': 'P0', 'exists': True, 'functions': []},
+                        {'name': 'routes', 'type': 'directory', 'priority': 'P0', 'exists': False, 'children': []}
+                    ]
+                },
+                {
+                    'name': 'scheduler',
+                    'type': 'directory',
+                    'priority': 'P0',
+                    'exists': False,
+                    'children': []
+                }
+            ]
+        }
+        
+        print("Generating ASCII tree...")
+        ascii_tree = generate_ascii_tree(sample_tree, args.output_ascii)
+        print(f"ASCII tree saved to: {args.output_ascii}")
+        
+        print("Generating HTML visualization...")
+        generate_html_tree(sample_tree, args.output_html)
+        print(f"HTML visualization saved to: {args.output_html}")
+        print(f"Open {args.output_html} in a browser to view the interactive tree.")
+        
+    except FileNotFoundError:
+        print(f"Error: Input file {args.input} not found.", file=sys.stderr)
+        print("Please run compare_tree.py first to generate the comparison data.", file=sys.stderr)
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in {args.input}: {e}", file=sys.stderr)
+        sys.exit(1)
