@@ -20,17 +20,23 @@ This repo **does NOT contain** the Jarvis implementation code. Instead, it:
 
 | Document | Description |
 |----------|-------------|
+| [USAGE_GUIDE.md](USAGE_GUIDE.md) | **START HERE** - Complete guide to using this repository |
 | [DESIGN_PLAN.md](DESIGN_PLAN.md) | Overall architecture and system design |
+| [USE_CASES.md](USE_CASES.md) | Detailed use cases showing component interactions |
+| [JARVIS_FILE_TREE.md](JARVIS_FILE_TREE.md) | Complete file tree with all modules, files, and functions by priority |
 | [REQUIREMENTS.md](REQUIREMENTS.md) | Coding standards and technical requirements |
 | [ROADMAP.md](ROADMAP.md) | Development phases, milestones, and timeline |
 | [DEV_STATE.md](DEV_STATE.md) | Current development state and progress tracking |
 
 ### Quick Start
 
-1. **New to the project?** Start with [DESIGN_PLAN.md](DESIGN_PLAN.md) to understand the architecture
-2. **Ready to code?** Review [REQUIREMENTS.md](REQUIREMENTS.md) for standards and best practices
-3. **Planning work?** Check [ROADMAP.md](ROADMAP.md) for implementation phases
-4. **Need current status?** See [DEV_STATE.md](DEV_STATE.md) for progress tracking
+1. **New to the project?** Read [USAGE_GUIDE.md](USAGE_GUIDE.md) for a complete walkthrough
+2. **Understand the architecture?** Start with [DESIGN_PLAN.md](DESIGN_PLAN.md)
+3. **Want to see how it works?** Read [USE_CASES.md](USE_CASES.md) for detailed interaction examples
+4. **Need the complete structure?** Check [JARVIS_FILE_TREE.md](JARVIS_FILE_TREE.md) for all files and functions
+5. **Ready to code?** Review [REQUIREMENTS.md](REQUIREMENTS.md) for standards and best practices
+6. **Planning work?** Check [ROADMAP.md](ROADMAP.md) for implementation phases
+7. **Need current status?** See [DEV_STATE.md](DEV_STATE.md) for progress tracking
 
 ## What is Jarvis?
 
@@ -47,7 +53,10 @@ Jarvis is an intelligent cluster management system designed to orchestrate and o
 ```
 JarvisCluster_Development/
 ├── README.md              # This file - project overview and navigation
+├── USAGE_GUIDE.md        # Complete guide to using this repository
 ├── DESIGN_PLAN.md        # System architecture and design principles
+├── USE_CASES.md          # Detailed use cases and interaction flows
+├── JARVIS_FILE_TREE.md   # Complete desired file tree with priorities
 ├── REQUIREMENTS.md       # Coding standards and technical requirements
 ├── ROADMAP.md           # Development phases and milestones
 ├── DEV_STATE.md         # Current development state tracker
@@ -59,11 +68,14 @@ JarvisCluster_Development/
 │   ├── examples/        # Example configurations and use cases
 │   └── guides/          # How-to guides and tutorials
 ├── scripts/             # Utility scripts
-│   └── setup-tracking.sh    # Setup script for tracking integration
+│   ├── setup-tracking.sh    # Setup script for tracking integration
+│   ├── compare_tree.py      # Compare desired vs actual file tree
+│   └── visualize_tree.py    # Generate visual tree representations
 └── tracking/            # Auto-generated tracking data from Jarvis repo
     ├── snapshots/       # Point-in-time repository snapshots
     ├── metrics/         # Development metrics over time
-    └── reports/         # Generated comparison reports
+    ├── reports/         # Generated comparison reports
+    └── templates/       # Templates for snapshots and reports
 ```
 
 ## Development Phases
@@ -94,14 +106,32 @@ For now:
 
 ## How It Works
 
-1. **You maintain** the planning documents (DESIGN_PLAN.md, REQUIREMENTS.md, ROADMAP.md) in this repo
+### Design and Planning Flow
+
+1. **System Overview** (DESIGN_PLAN.md): High-level architecture and components
+2. **Use Cases** (USE_CASES.md): Concrete examples of how components interact
+3. **Module Breakdown** (JARVIS_FILE_TREE.md): Detailed file structure with:
+   - All modules and their purpose
+   - All Python files organized by component
+   - All functions within each file
+   - Development priority (P0-P3) for each element
+   - Development order for MVP to advanced features
+
+### Implementation and Tracking Flow
+
+1. **You maintain** the planning documents in this repo
 2. **You develop** Jarvis in a separate implementation repository
 3. **Your tracking program** automatically:
    - Pulls the current state from the Jarvis implementation repo
    - Generates snapshots and metrics
    - Saves them to the `tracking/` directory
    - Creates comparison reports
-4. **This repo shows** the development progress and any deviations from the plan
+4. **Comparison tools** analyze:
+   - Which files exist vs. planned
+   - Which functions are implemented
+   - Progress by priority level (P0, P1, P2, P3)
+   - Adherence to development order
+5. **This repo shows** the development progress and any deviations from the plan
 
 ## Setting Up Tracking
 
@@ -119,6 +149,56 @@ vim config/tracking-config.yaml
 ```
 
 See `config/tracking-config.yaml` for full configuration options.
+
+## Using the Comparison Tools
+
+### Compare File Trees
+
+Compare the desired file tree (JARVIS_FILE_TREE.md) against your actual implementation:
+
+```bash
+# Run comparison
+python3 scripts/compare_tree.py \
+  --desired JARVIS_FILE_TREE.md \
+  --actual ../jarvis \
+  --output tracking/reports
+
+# View results
+cat tracking/reports/tree_comparison.md
+```
+
+This generates:
+- **JSON report**: Detailed comparison data
+- **Markdown report**: Human-readable summary with:
+  - Overall completion percentage
+  - Completion by priority (P0, P1, P2, P3)
+  - List of missing files
+  - Recommendations for next steps
+
+### Visualize the Tree
+
+Generate visual representations of the file tree:
+
+```bash
+# Generate visualizations
+python3 scripts/visualize_tree.py \
+  --input tracking/reports/tree_comparison.json \
+  --output-ascii tracking/reports/tree_visual.txt \
+  --output-html tracking/reports/tree_visual.html
+
+# View ASCII tree
+cat tracking/reports/tree_visual.txt
+
+# Open interactive HTML view
+open tracking/reports/tree_visual.html
+```
+
+The HTML visualization provides:
+- Interactive collapsible tree
+- Color-coded priorities
+- Filter by priority level
+- Search functionality
+- Real-time statistics
 
 ## Related Repositories
 
