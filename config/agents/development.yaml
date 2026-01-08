@@ -1,0 +1,81 @@
+# Jarvis Agent Configuration - Development Environment
+
+# Agent configuration for development environment
+# This configuration includes all agents with verbose logging
+
+agents:
+  # Health Monitor Agent
+  health_monitor:
+    enabled: true
+    type: monitoring
+    config:
+      check_interval: 5
+      heartbeat_timeout: 30
+      failure_threshold: 3
+      log_level: DEBUG
+
+  # Task Scheduler Agent
+  task_scheduler:
+    enabled: true
+    type: scheduling
+    config:
+      schedule_interval: 1
+      max_queue_size: 1000
+      algorithm: best_fit
+      log_level: DEBUG
+
+  # Resource Monitor Agent
+  resource_monitor:
+    enabled: true
+    type: monitoring
+    config:
+      check_interval: 10
+      metrics:
+        - cpu
+        - memory
+        - disk
+        - network
+      thresholds:
+        cpu_warning: 70
+        cpu_critical: 90
+        memory_warning: 75
+        memory_critical: 90
+      log_level: DEBUG
+
+  # Recovery Agent
+  recovery_agent:
+    enabled: true
+    type: recovery
+    config:
+      recovery_timeout: 60
+      max_recovery_attempts: 3
+      reschedule_delay: 5
+      log_level: DEBUG
+
+  # Load Balancer Agent
+  load_balancer:
+    enabled: true
+    type: scheduling
+    config:
+      rebalance_interval: 30
+      threshold_imbalance: 20  # Percent difference to trigger rebalancing
+      algorithm: least_loaded
+      log_level: DEBUG
+
+# Global agent settings
+settings:
+  # Event bus configuration
+  event_bus:
+    enabled: true
+    max_queue_size: 10000
+
+  # State store configuration
+  state_store:
+    backend: memory  # Use in-memory for development
+    persist: false
+
+  # Metrics collection
+  metrics:
+    enabled: true
+    export_interval: 30
+    retention_days: 7

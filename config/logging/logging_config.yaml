@@ -1,0 +1,164 @@
+# Standard Logging Configuration for Jarvis
+# This is a template configuration - copy to logging_config.yaml and customize
+
+version: 1
+disable_existing_loggers: false
+
+# Formatters define the output format
+formatters:
+  # Simple format for development/console
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+  # Detailed format with more context
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(funcName)s() - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+  # JSON format for structured logging (production)
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: '%(asctime)s %(name)s %(levelname)s %(message)s'
+    datefmt: '%Y-%m-%dT%H:%M:%S'
+
+# Filters can be used to add context or filter messages
+filters:
+  correlation_id:
+    (): jarvis.logging.CorrelationIdFilter
+
+# Handlers define where logs go
+handlers:
+  # Console handler for development
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+
+  # Console with JSON formatting
+  console_json:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: json
+    stream: ext://sys.stdout
+    filters: [correlation_id]
+
+  # File handler with rotation
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/jarvis.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 10
+    encoding: utf-8
+
+  # Error file for errors and above
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/jarvis_errors.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf-8
+
+  # Component-specific handlers
+  scheduler_file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/scheduler.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf-8
+
+  worker_file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/worker.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf-8
+
+  api_file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/api.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 10
+    encoding: utf-8
+
+# Loggers define logging configuration for different parts of the application
+loggers:
+  # Root logger
+  '':
+    level: INFO
+    handlers: [console, file, error_file]
+    propagate: false
+
+  # Jarvis application loggers
+  jarvis:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  jarvis.scheduler:
+    level: DEBUG
+    handlers: [scheduler_file, error_file]
+    propagate: false
+
+  jarvis.worker:
+    level: DEBUG
+    handlers: [worker_file, error_file]
+    propagate: false
+
+  jarvis.api:
+    level: INFO
+    handlers: [api_file, error_file]
+    propagate: false
+
+  jarvis.state:
+    level: INFO
+    handlers: [file, error_file]
+    propagate: false
+
+  jarvis.monitor:
+    level: INFO
+    handlers: [file, error_file]
+    propagate: false
+
+  # Third-party library loggers
+  uvicorn:
+    level: INFO
+    handlers: [console]
+    propagate: false
+
+  uvicorn.access:
+    level: WARNING
+    handlers: [api_file]
+    propagate: false
+
+  sqlalchemy:
+    level: WARNING
+    handlers: [file]
+    propagate: false
+
+  # Noisy libraries - reduce their logging
+  urllib3:
+    level: WARNING
+    handlers: [file]
+    propagate: false
+
+  requests:
+    level: WARNING
+    handlers: [file]
+    propagate: false
+
+# Root logger configuration
+root:
+  level: INFO
+  handlers: [console, file, error_file]

@@ -1,0 +1,109 @@
+# Jarvis Agent Configuration - Production Environment
+
+# Agent configuration for production environment
+# This configuration includes production-ready settings with appropriate intervals
+
+agents:
+  # Health Monitor Agent
+  health_monitor:
+    enabled: true
+    type: monitoring
+    config:
+      check_interval: 10
+      heartbeat_timeout: 60
+      failure_threshold: 5
+      log_level: INFO
+
+  # Task Scheduler Agent
+  task_scheduler:
+    enabled: true
+    type: scheduling
+    config:
+      schedule_interval: 2
+      max_queue_size: 10000
+      algorithm: best_fit
+      log_level: INFO
+
+  # Resource Monitor Agent
+  resource_monitor:
+    enabled: true
+    type: monitoring
+    config:
+      check_interval: 30
+      metrics:
+        - cpu
+        - memory
+        - disk
+        - network
+      thresholds:
+        cpu_warning: 70
+        cpu_critical: 85
+        memory_warning: 75
+        memory_critical: 85
+      log_level: INFO
+
+  # Recovery Agent
+  recovery_agent:
+    enabled: true
+    type: recovery
+    config:
+      recovery_timeout: 120
+      max_recovery_attempts: 5
+      reschedule_delay: 10
+      log_level: INFO
+
+  # Load Balancer Agent
+  load_balancer:
+    enabled: true
+    type: scheduling
+    config:
+      rebalance_interval: 300
+      threshold_imbalance: 30
+      algorithm: least_loaded
+      log_level: INFO
+
+  # Performance Tuner Agent
+  performance_tuner:
+    enabled: true
+    type: optimization
+    config:
+      tune_interval: 600
+      metrics_window: 3600
+      adjustment_step: 10
+      log_level: INFO
+
+  # Security Monitor Agent
+  security_monitor:
+    enabled: true
+    type: security
+    config:
+      scan_interval: 60
+      threat_detection: true
+      log_level: WARNING
+
+# Global agent settings
+settings:
+  # Event bus configuration
+  event_bus:
+    enabled: true
+    max_queue_size: 100000
+    persistence: true
+
+  # State store configuration
+  state_store:
+    backend: etcd  # Use etcd for production
+    persist: true
+    backup_interval: 3600
+
+  # Metrics collection
+  metrics:
+    enabled: true
+    export_interval: 60
+    retention_days: 90
+    aggregation: true
+
+  # High availability
+  high_availability:
+    enabled: true
+    leader_election: true
+    heartbeat_interval: 10
