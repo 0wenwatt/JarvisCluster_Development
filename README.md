@@ -16,6 +16,17 @@ This repo **does NOT contain** the Jarvis implementation code. Instead, it:
 
 ## Documentation
 
+### 🤖 For AI Agents (GitHub Copilot)
+
+**START HERE**: [`.copilot/INDEX.md`](.copilot/INDEX.md) - Efficient navigation structure
+
+The `.copilot/` directory contains a pyramid tree structure designed for AI agents to efficiently navigate this repository. Instead of loading all documentation at once, agents can:
+1. Start with the overview
+2. Navigate to relevant categories
+3. Load detailed content only when needed
+
+See [`.copilot/README.md`](.copilot/README.md) for details on the structure.
+
 ### Core Documents
 
 | Document | Description |
