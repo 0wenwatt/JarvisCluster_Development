@@ -1,0 +1,3 @@
+# This file ensures the src directory is tracked by git
+# Place code examples, prototypes, and reference implementations here
+# Note: This is NOT the main Jarvis implementation (that's in a separate repo)

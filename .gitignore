@@ -33,9 +33,9 @@ temp/
 scripts/temp/
 scripts/.cache/
 
-# Log files
+# Log files (but keep logs/ directory structure)
 *.log
-logs/
+# Note: logs/ directory itself is tracked, only *.log files inside are ignored
 
 # Environment files (if you add them)
 .env
