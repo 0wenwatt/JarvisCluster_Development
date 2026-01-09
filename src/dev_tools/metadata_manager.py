@@ -125,13 +125,15 @@ class MetadataManager:
         current_time = datetime.now().timestamp()
         
         # Check if node is up to date
-        up_to_date = True
         if path in self.metadata:
             old_node = self.metadata[path]
             up_to_date = (
                 old_node.sha256 == sha256 and
                 old_node.last_modified == last_modified
             )
+        else:
+            # New node, not up to date since we're creating it
+            up_to_date = False
         
         self.metadata[path] = NodeMetadata(
             path=path,

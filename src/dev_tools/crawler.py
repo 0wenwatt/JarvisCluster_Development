@@ -5,7 +5,6 @@ Traverses directory trees to collect file metadata and contents.
 Supports filtering, ignoring patterns, and efficient tree navigation.
 """
 
-import os
 import hashlib
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Callable

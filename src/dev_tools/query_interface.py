@@ -148,22 +148,14 @@ class CodebaseQueryInterface:
                 func_name = func_match.group(2)
                 func_indent = len(func_match.group(1))
             
-            elif in_function:
-                # Check if function has ended (new def at same/lower indent, or non-indented line)
-                if line.strip() and not line[0].isspace():
+            elif in_function and line.strip():
+                # Calculate current line's indent
+                current_indent = len(line) - len(line.lstrip())
+                
+                # Function ends when we see a line at the same or lower indent level
+                # (but not inside the function body)
+                if current_indent <= func_indent:
                     # Function ended
-                    content = ''.join(lines[func_start-1:i-1])
-                    snippets.append(CodeSnippet(
-                        file_path=file_path,
-                        start_line=func_start,
-                        end_line=i-1,
-                        content=content.rstrip(),
-                        context=func_name,
-                        snippet_type='function'
-                    ))
-                    in_function = False
-                elif line.strip().startswith('def '):
-                    # New function at same level
                     content = ''.join(lines[func_start-1:i-1])
                     snippets.append(CodeSnippet(
                         file_path=file_path,
@@ -237,9 +229,13 @@ class CodebaseQueryInterface:
                 class_name = class_match.group(2)
                 class_indent = len(class_match.group(1))
             
-            elif in_class:
-                # Check if class has ended (non-indented line or new class)
-                if line.strip() and not line[0].isspace():
+            elif in_class and line.strip():
+                # Calculate current line's indent
+                current_indent = len(line) - len(line.lstrip())
+                
+                # Class ends when we see a line at the same or lower indent level
+                # (but not inside the class body)
+                if current_indent <= class_indent:
                     # Class ended
                     content = ''.join(lines[class_start-1:i-1])
                     snippets.append(CodeSnippet(
