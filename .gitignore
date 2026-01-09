@@ -54,3 +54,7 @@ npm-debug.log*
 # Build outputs (if you add build scripts)
 dist/
 build/
+
+# Dev tools metadata files
+.jarvis_metadata.json
+*_metadata.json
