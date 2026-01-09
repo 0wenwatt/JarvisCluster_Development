@@ -1,0 +1,39 @@
+{
+  "step_number": 14,
+  "step_title": "Implement Clustering Algorithm",
+  "step_description": "Design the k-means clustering algorithm implementation",
+  
+  "context": {
+    "phase": "design",
+    "feature_area": "data_processing",
+    "complexity": "medium"
+  },
+  
+  "related_steps": [13, 15],
+  "related_steps_description": {
+    "13": "Database schema (complete)",
+    "15": "Testing phase"
+  },
+  
+  "previous_work": "Step 13 defined data models",
+  "next_phase": "Coders will implement from your specification",
+  
+  "file_organization_check": true,
+  "documentation_check": true,
+  
+  "deliverables_needed": [
+    "Specification document with algorithm description",
+    "Test cases for validation",
+    "File structure for implementation",
+    "Architecture explanation"
+  ],
+  
+  "target_audience": "Coder who will implement this in Python",
+  "target_coder_experience": "intermediate",
+  
+  "special_considerations": [
+    "Algorithm needs to be efficient for large datasets",
+    "Must integrate with existing data pipeline",
+    "Should be testable with mock data"
+  ]
+}

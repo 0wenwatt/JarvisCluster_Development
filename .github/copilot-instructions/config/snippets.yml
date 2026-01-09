@@ -1,0 +1,243 @@
+# Snippets Configuration Database
+# Defines all available instruction snippets and their properties
+
+shared:
+  AGENT_WORKSPACE.md:
+    category: standards
+    description: Workspace rules, files allowed, progress tracking
+    path: shared/AGENT_WORKSPACE.md
+    applies_to: [all]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  LOGGING_STANDARDS.md:
+    category: standards
+    description: How to log findings, format, severity levels
+    path: shared/LOGGING_STANDARDS.md
+    applies_to: [all]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  COMMUNICATION_STANDARDS.md:
+    category: standards
+    description: How to report results to user, report format
+    path: shared/COMMUNICATION_STANDARDS.md
+    applies_to: [all]
+    always_include: true
+    priority: high
+    context_dependent: false
+
+designer:
+  SCOPE.md:
+    category: role
+    description: What Designer does and doesn't do, boundaries
+    path: roles/designer/SCOPE.md
+    applies_to: [designer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  COMPLETE_ROLE.md:
+    category: overview
+    description: Complete Designer role overview and entry point
+    path: roles/designer/COMPLETE_ROLE.md
+    applies_to: [designer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  DESIGN_PROCESS.md:
+    category: process
+    description: Step-by-step how to design, methodology
+    path: roles/designer/DESIGN_PROCESS.md
+    applies_to: [designer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  SPECIFICATION_TEMPLATE.md:
+    category: template
+    description: Template for writing specifications
+    path: roles/designer/SPECIFICATION_TEMPLATE.md
+    applies_to: [designer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  DOCUMENTATION.md:
+    category: standards
+    description: What to document, how to document decisions
+    path: roles/designer/DOCUMENTATION.md
+    applies_to: [designer]
+    always_include: true
+    priority: normal
+    context_dependent: false
+    status: not_created_yet
+    
+  FILESYSTEM_RULES.md:
+    category: standards
+    description: Design repo organization, file placement
+    path: roles/designer/FILESYSTEM_RULES.md
+    applies_to: [designer]
+    always_include: false
+    priority: normal
+    context_dependent: true
+    context_triggers: [file_organization_check, new_developer]
+    status: not_created_yet
+
+coder:
+  SCOPE.md:
+    category: role
+    description: What Coder does and doesn't do, boundaries
+    path: roles/coder/SCOPE.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  COMPLETE_ROLE.md:
+    category: overview
+    description: Complete Coder role overview and entry point
+    path: roles/coder/COMPLETE_ROLE.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    
+  TDD_WORKFLOW.md:
+    category: process
+    description: Test-first development workflow, process
+    path: roles/coder/TDD_WORKFLOW.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  CODE_STYLE.md:
+    category: standards
+    description: Code style, formatting, naming conventions
+    path: roles/coder/CODE_STYLE.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  FILE_ORGANIZATION.md:
+    category: standards
+    description: Production repo file organization, structure
+    path: roles/coder/FILE_ORGANIZATION.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  TESTING_REQUIREMENTS.md:
+    category: standards
+    description: Test standards, naming, coverage, test structure
+    path: roles/coder/TESTING_REQUIREMENTS.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  DOCUMENTATION_REQUIREMENTS.md:
+    category: standards
+    description: Code documentation, docstrings, comments
+    path: roles/coder/DOCUMENTATION_REQUIREMENTS.md
+    applies_to: [coder]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  ENVIRONMENT_SETUP.md:
+    category: setup
+    description: Python environment setup, venv/conda, installation
+    path: roles/coder/ENVIRONMENT_SETUP.md
+    applies_to: [coder]
+    always_include: false
+    priority: normal
+    context_dependent: true
+    context_triggers: [fresh_environment, new_setup, first_time]
+    status: not_created_yet
+
+maintainer:
+  SCOPE.md:
+    category: role
+    description: What Maintainer does, authority, decision making
+    path: roles/maintainer/SCOPE.md
+    applies_to: [maintainer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  COMPLETE_ROLE.md:
+    category: overview
+    description: Complete Maintainer role overview and entry point
+    path: roles/maintainer/COMPLETE_ROLE.md
+    applies_to: [maintainer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  CONFORMANCE_CHECKLIST.md:
+    category: checklist
+    description: What to verify, verification checklist
+    path: roles/maintainer/CONFORMANCE_CHECKLIST.md
+    applies_to: [maintainer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  CODE_REVIEW.md:
+    category: process
+    description: How to review code, code review process
+    path: roles/maintainer/CODE_REVIEW.md
+    applies_to: [maintainer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  TEST_VERIFICATION.md:
+    category: process
+    description: How to verify tests, run tests, check coverage
+    path: roles/maintainer/TEST_VERIFICATION.md
+    applies_to: [maintainer]
+    always_include: true
+    priority: high
+    context_dependent: false
+    status: not_created_yet
+    
+  FILESYSTEM_CONFORMANCE.md:
+    category: checklist
+    description: How to verify file organization, directory structure
+    path: roles/maintainer/FILESYSTEM_CONFORMANCE.md
+    applies_to: [maintainer]
+    always_include: false
+    priority: normal
+    context_dependent: true
+    context_triggers: [file_organization_check, review_structure]
+    status: not_created_yet
+    
+  DOCUMENTATION_REVIEW.md:
+    category: checklist
+    description: How to review documentation completeness
+    path: roles/maintainer/DOCUMENTATION_REVIEW.md
+    applies_to: [maintainer]
+    always_include: false
+    priority: normal
+    context_dependent: true
+    context_triggers: [doc_review, full_check]
+    status: not_created_yet

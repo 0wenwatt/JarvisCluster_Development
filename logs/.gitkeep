@@ -1,3 +1,0 @@
-# This file ensures the logs directory structure is tracked by git
-# Development logs and session records will be stored here
-# Note: Individual .log files are ignored by .gitignore

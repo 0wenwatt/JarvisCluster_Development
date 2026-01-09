@@ -1,0 +1,86 @@
+# Role Definitions
+# Metadata about each role
+
+roles:
+  designer:
+    title: Designer
+    description: Designs architecture, creates specifications, plans development
+    workspace: JarvisCluster_Development
+    code_allowed: false
+    output_types:
+      - specification_document
+      - design_document
+      - planning_document
+      - test_cases
+    interacts_with:
+      - coder: receives_implementation, reviews_with_maintainer
+      - maintainer: provides_spec_for_verification
+    
+  coder:
+    title: Coder
+    description: Implements code from specifications using test-first development
+    workspace: Jarvis
+    code_allowed: true
+    output_types:
+      - implementation_code
+      - test_suite
+      - code_documentation
+    interacts_with:
+      - designer: receives_spec, asks_clarifications
+      - maintainer: hands_off_for_review
+    
+  maintainer:
+    title: Maintainer
+    description: Reviews code, verifies conformance to specifications
+    workspace: both
+    code_allowed: false
+    output_types:
+      - code_review
+      - findings_report
+      - approval_decision
+    interacts_with:
+      - designer: references_spec_for_verification
+      - coder: provides_feedback, requests_changes
+
+snippets_by_role:
+  designer:
+    always_include:
+      - shared/AGENT_WORKSPACE.md
+      - shared/LOGGING_STANDARDS.md
+      - shared/COMMUNICATION_STANDARDS.md
+      - designer/SCOPE.md
+      - designer/COMPLETE_ROLE.md
+      - designer/DESIGN_PROCESS.md
+      - designer/SPECIFICATION_TEMPLATE.md
+      - designer/DOCUMENTATION.md
+    optional:
+      - designer/FILESYSTEM_RULES.md  # Include if context.file_organization_check=true
+    
+  coder:
+    always_include:
+      - shared/AGENT_WORKSPACE.md
+      - shared/LOGGING_STANDARDS.md
+      - shared/COMMUNICATION_STANDARDS.md
+      - coder/SCOPE.md
+      - coder/COMPLETE_ROLE.md
+      - coder/TDD_WORKFLOW.md
+      - coder/CODE_STYLE.md
+      - coder/FILE_ORGANIZATION.md
+      - coder/TESTING_REQUIREMENTS.md
+      - coder/DOCUMENTATION_REQUIREMENTS.md
+    optional:
+      - coder/ENVIRONMENT_SETUP.md  # Include if context.fresh_environment=true
+    
+  maintainer:
+    always_include:
+      - shared/AGENT_WORKSPACE.md
+      - shared/LOGGING_STANDARDS.md
+      - shared/COMMUNICATION_STANDARDS.md
+      - maintainer/SCOPE.md
+      - maintainer/COMPLETE_ROLE.md
+      - maintainer/CONFORMANCE_CHECKLIST.md
+      - maintainer/CODE_REVIEW.md
+      - maintainer/TEST_VERIFICATION.md
+    optional:
+      - maintainer/FILESYSTEM_CONFORMANCE.md  # Include if context.file_organization_check=true
+      - maintainer/DOCUMENTATION_REVIEW.md  # Include if context.documentation_check=true

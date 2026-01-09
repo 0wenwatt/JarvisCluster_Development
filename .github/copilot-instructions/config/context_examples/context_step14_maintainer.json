@@ -1,0 +1,54 @@
+{
+  "step_number": 14,
+  "step_title": "Implement Clustering Algorithm",
+  
+  "context": {
+    "phase": "review",
+    "feature_area": "data_processing"
+  },
+  
+  "designer_spec_location": "Copilot_Development_Instructions/Step_14/specification.md",
+  "coder_output_location": "Jarvis/src/jarvis/algorithms/clustering.py",
+  "test_location": "Jarvis/tests/unit/test_clustering.py",
+  
+  "related_steps": [13, 15],
+  
+  "verification_scope": {
+    "file_organization_check": true,
+    "code_review": true,
+    "test_verification": true,
+    "documentation_check": true,
+    "conformance_check": true
+  },
+  
+  "specification_areas_to_verify": [
+    "Algorithm implements k-means correctly",
+    "Handles edge cases specified",
+    "Integrates with data model from Step 13",
+    "Performance requirements met"
+  ],
+  
+  "test_expectations": {
+    "minimum_coverage": 80,
+    "required_test_files": ["test_clustering.py"],
+    "critical_tests": [
+      "test_kmeans_basic_clustering",
+      "test_kmeans_convergence",
+      "test_edge_case_single_cluster",
+      "test_edge_case_empty_data"
+    ]
+  },
+  
+  "code_quality_focus": [
+    "Clean implementation of algorithm",
+    "Good documentation of logic",
+    "Proper error handling",
+    "Type hints present"
+  ],
+  
+  "special_attention": [
+    "This is a core algorithm - review carefully",
+    "Ensure test coverage is strong",
+    "Verify documentation is clear"
+  ]
+}

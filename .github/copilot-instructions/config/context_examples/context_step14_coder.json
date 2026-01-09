@@ -1,0 +1,42 @@
+{
+  "step_number": 14,
+  "step_title": "Implement Clustering Algorithm",
+  "step_description": "Implement the k-means clustering algorithm as specified in architecture design",
+  
+  "context": {
+    "phase": "implementation",
+    "feature_area": "data_processing",
+    "complexity": "medium"
+  },
+  
+  "related_steps": [13, 15, 16],
+  "related_steps_description": {
+    "13": "Database schema and data models",
+    "15": "Testing and validation",
+    "16": "Performance optimization"
+  },
+  
+  "dependencies": [
+    "Data model from Step 13",
+    "Numpy and scipy libraries",
+    "Test framework from Step 5"
+  ],
+  
+  "fresh_environment": false,
+  "file_organization_check": true,
+  "documentation_check": true,
+  "code_review": true,
+  "test_verification": true,
+  
+  "previous_output": "Step 13 created data models in src/jarvis/models/",
+  "next_input_for": "Step 15 will create tests against this implementation",
+  
+  "designer_spec_location": "Copilot_Development_Instructions/Step_14/specification.md",
+  "codebase_context": {
+    "language": "python",
+    "test_framework": "pytest",
+    "minimum_coverage": 80
+  },
+  
+  "special_notes": "This is a core algorithm. Pay extra attention to documentation and test coverage."
+}
