@@ -153,19 +153,23 @@ class CodebaseQueryInterface:
                 current_indent = len(line) - len(line.lstrip())
                 
                 # Function ends when we see a line at the same or lower indent level
-                # (but not inside the function body)
-                if current_indent <= func_indent:
-                    # Function ended
-                    content = ''.join(lines[func_start-1:i-1])
-                    snippets.append(CodeSnippet(
-                        file_path=file_path,
-                        start_line=func_start,
-                        end_line=i-1,
-                        content=content.rstrip(),
-                        context=func_name,
-                        snippet_type='function'
-                    ))
-                    in_function = False
+                # that is not a decorator (starts with @) or comment
+                if current_indent <= func_indent and not line.strip().startswith('@') and not line.strip().startswith('#'):
+                    # Check if it's a new definition (class, def, etc.)
+                    if (line.strip().startswith('def ') or 
+                        line.strip().startswith('class ') or
+                        (current_indent == 0 and line.strip())):  # Top-level statement
+                        # Function ended
+                        content = ''.join(lines[func_start-1:i-1])
+                        snippets.append(CodeSnippet(
+                            file_path=file_path,
+                            start_line=func_start,
+                            end_line=i-1,
+                            content=content.rstrip(),
+                            context=func_name,
+                            snippet_type='function'
+                        ))
+                        in_function = False
         
         # Save last function if file ended during function
         if in_function:
@@ -234,19 +238,23 @@ class CodebaseQueryInterface:
                 current_indent = len(line) - len(line.lstrip())
                 
                 # Class ends when we see a line at the same or lower indent level
-                # (but not inside the class body)
-                if current_indent <= class_indent:
-                    # Class ended
-                    content = ''.join(lines[class_start-1:i-1])
-                    snippets.append(CodeSnippet(
-                        file_path=file_path,
-                        start_line=class_start,
-                        end_line=i-1,
-                        content=content.rstrip(),
-                        context=class_name,
-                        snippet_type='class'
-                    ))
-                    in_class = False
+                # that is not a decorator or comment
+                if current_indent <= class_indent and not line.strip().startswith('@') and not line.strip().startswith('#'):
+                    # Check if it's a new definition (class, def, etc.)
+                    if (line.strip().startswith('def ') or 
+                        line.strip().startswith('class ') or
+                        (current_indent == 0 and line.strip())):  # Top-level statement
+                        # Class ended
+                        content = ''.join(lines[class_start-1:i-1])
+                        snippets.append(CodeSnippet(
+                            file_path=file_path,
+                            start_line=class_start,
+                            end_line=i-1,
+                            content=content.rstrip(),
+                            context=class_name,
+                            snippet_type='class'
+                        ))
+                        in_class = False
         
         # Save last class if file ended during class
         if in_class:
