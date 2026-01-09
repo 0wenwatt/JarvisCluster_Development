@@ -67,10 +67,19 @@ JarvisCluster_Development/
 │   ├── decisions/       # Architectural Decision Records (ADRs)
 │   ├── examples/        # Example configurations and use cases
 │   └── guides/          # How-to guides and tutorials
+│       └── dev_tools_quickstart.md  # Development tools quick start
 ├── scripts/             # Utility scripts
 │   ├── setup-tracking.sh    # Setup script for tracking integration
 │   ├── compare_tree.py      # Compare desired vs actual file tree
 │   └── visualize_tree.py    # Generate visual tree representations
+├── src/                 # Source code and development tools
+│   └── dev_tools/       # Development tools for codebase navigation
+│       ├── crawler.py         # File system crawler with SHA256 hashing
+│       ├── metadata_manager.py # Change tracking and dependency management
+│       ├── query_interface.py  # Code querying and LLM formatting
+│       ├── cli.py            # Command-line interface
+│       ├── example_usage.py  # Interactive examples
+│       └── README.md         # Full documentation
 └── tracking/            # Auto-generated tracking data from Jarvis repo
     ├── snapshots/       # Point-in-time repository snapshots
     ├── metrics/         # Development metrics over time
@@ -199,6 +208,51 @@ The HTML visualization provides:
 - Filter by priority level
 - Search functionality
 - Real-time statistics
+
+## Development Tools
+
+This repository includes powerful development tools for codebase navigation and LLM integration:
+
+### Quick Start with Dev Tools
+
+```bash
+# Navigate to the tools
+cd src/dev_tools
+
+# Crawl your codebase
+python3 cli.py crawl /path/to/your/code -o output.json
+
+# Track changes with metadata
+python3 cli.py metadata update -p /path/to/your/code
+
+# Query files and extract code
+python3 cli.py query summary -f path/to/file.py
+
+# Format for LLM/AI assistants
+python3 cli.py query llm -f path/to/file.py -o context.txt
+```
+
+### Key Features
+
+- **File Crawler**: Recursive directory traversal with SHA256 hashing
+- **Metadata Manager**: Track changes and dependencies automatically
+- **Query Interface**: Extract functions, classes, and code snippets
+- **LLM Integration**: Format code for AI-assisted development
+- **CLI Tool**: Unified command-line interface for all features
+
+### Documentation
+
+- **Quick Start**: [docs/guides/dev_tools_quickstart.md](docs/guides/dev_tools_quickstart.md)
+- **Full Documentation**: [src/dev_tools/README.md](src/dev_tools/README.md)
+- **Examples**: Run `python3 src/dev_tools/example_usage.py`
+
+### Use Cases
+
+1. **AI-Assisted Development**: Present codebase context to ChatGPT, Claude, or other LLMs
+2. **Change Detection**: Track which files have changed during development
+3. **Code Analysis**: Understand codebase structure and dependencies
+4. **Documentation**: Extract API information automatically
+5. **Code Review**: Get quick summaries of files before reviewing
 
 ## Related Repositories
 
